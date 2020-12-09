@@ -5,9 +5,11 @@ on:
 jobs:
   build:
     runs-on: ubuntu-16.04
+    matrix:
+      deno-version: [1.4.0, 1.5.0, 1.6.0]
     steps:
       - uses: actions/checkout@master
       - uses: denolib/setup-deno@master
         with:
-          deno-version: v1.5.0
+          deno-version: ${{ matrix.deno-version }}
       - run: deno test -A
